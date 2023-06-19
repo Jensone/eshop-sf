@@ -2,8 +2,9 @@
 
 namespace App\DataFixtures;
 
-use Doctrine\Bundle\FixturesBundle\Fixture;
+use App\Entity\Product;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class AppFixtures extends Fixture
 {
@@ -153,6 +154,18 @@ class AppFixtures extends Fixture
             ]
         ];
 
+        // Boucle sur le tableau des produits
+        foreach ($products as $item) {
+            $product = new Product();
+            $product->setName($item['name']);
+            $product->setPrice($item['price']);
+            $product->setShortDescription($item['short_description']);
+            $product->setLongDescription($item['long_description']);
+            $product->setImage($item['image']);
+
+            // Persiste l'objet $product de la liste du tableau $products
+            $manager->persist($product);
+        }
 
         $manager->flush();
     }

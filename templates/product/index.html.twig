@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProductController!{% endblock %}
+
+{% block body %}
+
+{{ dump(products) }}
+
+<main>
+    {% for item in products %}
+        <div class="grid">
+            <article>
+                <header>{{ item.name }}</header>
+                <p>{{ item.shortDescription }}</p>
+                <footer>{{ item.price }}&euro;</footer>
+            </article>
+        </div>
+    {% endfor %}
+</main>
+
+{% endblock %}

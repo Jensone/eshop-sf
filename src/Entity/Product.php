@@ -27,7 +27,7 @@ class Product
     private ?string $long_description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $image = null;
+    private ?string $image = 'product-sample.png';
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Category $category = null;

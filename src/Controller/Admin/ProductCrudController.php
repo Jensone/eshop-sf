@@ -6,10 +6,11 @@ use App\Entity\Product;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class ProductCrudController extends AbstractCrudController
 {
@@ -57,6 +58,16 @@ class ProductCrudController extends AbstractCrudController
                 ->setUploadedFileNamePattern('[slug]-[contenthash].[extension]')
                 ->setBasePath('images/products/')
                 ->setUploadDir('public/images/products/'),
+
+            FormField::addPanel('Mettre en avant')
+                ->setIcon('star')
+                ->setHelp('Souhaitez-vous mettre en avant ce produit ?'),
+            BooleanField::new('isFeatured'),
+
+            FormField::addPanel('Publier le produit')
+                ->setIcon('eye')
+                ->setHelp('Souhaitez-vous publier ce produit dans la boutique?'),
+            BooleanField::new('isPublished'),
         ];
     }
 }

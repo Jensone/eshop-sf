@@ -7,13 +7,24 @@
 {{ dump(products) }}
 
 <main>
+<h1>{{ slugTest }}</h1>
+
     {% for item in products %}
         <div class="grid">
             <article>
-                <header>{{ item.name }}</header>
-                <img src="{{ asset('images/products') }}/{{ item.image }}" alt="">
+                <header>
+                    {{ item.name }}
+                    {% if item.isFeatured == true %}
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><path fill="#FFAAAA" d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45L7.77 18l1.12-4.81l-3.73-3.23l4.92-.42L12 5l1.92 4.53l4.92.42l-3.73 3.23L16.23 18z"/></svg>
+                        </span>
+                    {% endif %}
+                </header>
+                <img src="{{ asset('images/products') }}/{{ item.image }}" alt="{{ item.name }}">
                 <p>{{ item.shortDescription }}</p>
-                <footer>{{ item.price }}&euro;</footer>
+                <footer>
+                    {{ item.price }}&euro; - <a href={{ path('product_show', { id: item.id }) }}>Voir le produit</a>
+                </footer>
             </article>
         </div>
     {% endfor %}
